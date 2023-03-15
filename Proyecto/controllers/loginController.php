@@ -24,7 +24,6 @@ if($resultado -> num_rows > 0)
     else
     {
     
-       
         header("location: ../views/login.php");
     }
 
@@ -35,8 +34,8 @@ if($resultado -> num_rows > 0)
 
 
 
-if (isset($_POST["btnRegistrarCuenta"])){
-//session_start();
+if (isset($_POST["btnRegistrarCueta"])){
+
 
 $emailRegistrar= $_POST["emailRegistrar"];
 $contrasennaRegistrar =$_POST["contrasennaRegistrar"];
@@ -47,18 +46,32 @@ $contrasennaRegistrar =$_POST["contrasennaRegistrar"];
 $resultado= ValidacionRegistro($emailRegistrar,$contrasennaRegistrar);
 
 if($resultado == 1){
-    
-
-    header("location: /Proyecto/index.php" );
-    
-}else{
 
     header("location: /Proyecto/views/login.php");
-    echo("hola");
+    
+}else{
+    
+    header("location: /Proyecto/views/index.php");
+   
 
 }
 
 
+}
+
+
+if(isset($_GET["VerificarExisteCorreo"]))
+{   
+    $resultado = VerificarExisteCorreoModel($_GET["emailRegistrar"]);
+
+    if($resultado -> num_rows > 0)
+    {
+        echo "Ya hay un usuario registrado con este correo";
+    }
+    else
+    {
+        echo "OK";
+    }
 }
 
 ?>

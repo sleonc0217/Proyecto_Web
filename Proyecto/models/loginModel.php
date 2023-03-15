@@ -30,4 +30,17 @@ function ValidacionRegistro($emailRegistrar,$contrasennaRegistrar){
 }
 
 
+
+function VerificarExisteCorreoModel($emailRegistrar)
+{
+    $instancia = OpenDataBase();
+
+    $sentencia = "CALL VerificarExisteCorreo('$emailRegistrar')";
+    $resultado = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $resultado;        
+}
+
+
 ?>

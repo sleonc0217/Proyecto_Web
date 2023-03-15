@@ -14,6 +14,7 @@ include ('../controllers/loginController.php');
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/correctivos.css" rel="stylesheet" />
     <link href="css/login.css" rel="stylesheet" />
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -55,7 +56,7 @@ include ('../controllers/loginController.php');
 				
                 <div class="group">
                     <label for="pass" class="label">Correo electrónico</label>
-                    <input id="emailRegistrar" type="email" class="input" name="emailRegistrar" require onkeyup="HabilitarBoton();">
+                    <input id="emailRegistrar" type="email" class="input" name="emailRegistrar" require onblur="HabilitarBoton();">
                 </div>
 				<div class="group">
 					<label for="pass" class="label">Contraseña</label>
@@ -81,7 +82,9 @@ include ('../controllers/loginController.php');
 
 
 
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="js/funcionesRegistro.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
 
 </body>
 </html>
