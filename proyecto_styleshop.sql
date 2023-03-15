@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 11-03-2023 a las 04:04:30
+-- Tiempo de generación: 15-03-2023 a las 19:08:57
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -38,6 +38,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidarInicio` (IN `pEmail` VARCHAR
   	FROM 	usuario
     WHERE 	email = pEmail
     	AND Contrasenna       = pContrasenna;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `VerificarExisteCorreo` (IN `p_email` VARCHAR(100))   BEGIN
+
+SELECT email,Contrasenna FROM usuario WHERE email = p_email;
 
 END$$
 
@@ -81,7 +87,27 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idUsuario`, `email`, `Contrasenna`, `idRol`) VALUES
 (1, 'cliente@example.com', 'pwdprueba', 1),
 (3, 'sebas01@gmail.com', '01', 1),
-(4, 'sleonc02@gmail.com', '12', 1);
+(4, 'sleonc02@gmail.com', '12', 1),
+(5, 'juan@gmail.com', '123', 1),
+(6, 'carlos@gmail.com', '123', 1),
+(7, 'pedro@gmail.com', '123', 1),
+(8, 'cata@gmail.com', '123', 1),
+(9, 'karina@gmail.com', '123', 1),
+(10, 'f@gmail.com', '123', 1),
+(11, 'f@gmail.com', '123', 1),
+(12, 'bernal@gmail.com', '123', 1),
+(13, 'fabian@gmail.com', '123', 1),
+(14, 'carlos123@gmail.com', '123', 1),
+(15, 'Krista@gmail.com', '123', 1),
+(16, 'fer@gmail.com', '123', 1),
+(17, 'prueba123@gmail.com', '123', 1),
+(18, 'leon@gmail.com', '123', 1),
+(19, 'perez@gmail.com', '123', 1),
+(20, 'pepe@gmail.com', '123', 1),
+(21, 'pepe@gmail.com', '123', 1),
+(22, 'andres@gmail.com', '123', 1),
+(23, 'andres@gmail.com', '123', 1),
+(24, 'cliete@example.com', '123', 1);
 
 --
 -- Índices para tablas volcadas
@@ -108,7 +134,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUsuario` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restricciones para tablas volcadas
