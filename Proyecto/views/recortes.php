@@ -8,6 +8,50 @@ function MostrarNombreUsuario()
     echo $_SESSION["email"];
 }
 
+function MostrarLogout(){
+
+
+    if(isset($_SESSION['email']) && session_status() === PHP_SESSION_ACTIVE){
+        
+        echo ('
+            <form method="post" action="">
+            <button type="submit" class="btn btn-outline-dark btn-salir" name="btnSalir">
+            <i class="bi bi-door-closed-fill"></i>
+            Salir
+            </button>
+            </form>
+        ');
+    }else{
+   
+            echo '';
+    
+    }
+}
+
+
+
+
+function ValidarRol(){
+
+    if(isset($_SESSION['idRol'])    &&  $_SESSION['idRol'] == 2       &&       session_status() === PHP_SESSION_ACTIVE){
+        
+        echo ('
+        
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dashboard</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="/Proyecto/views/usuarios.php">Usuarios</a></li>
+        <li><a class="dropdown-item" href="#!">Categorías</a></li>
+        <li><a class="dropdown-item" href="#!">Productos</a></li>
+        </ul>
+        </li>
+        
+        
+        ');
+    }else{
+            echo ('');
+    }
+}
 
 
 function mostrarMenu(){
@@ -15,8 +59,8 @@ function mostrarMenu(){
     
     
     echo'
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
+    <nav class="navbar nav-ajuste navbar-expand-lg navbar-light bg-light">
+    <div class="div-ajuste container px-4 px-lg-5">
     <a class="navbar-brand" href="#!">StyleShop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -33,7 +77,13 @@ function mostrarMenu(){
     <li><a class="dropdown-item" href="#!">Popular Items</a></li>
     <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
     </ul>
-    </li>
+    </li>';
+    
+
+    ValidarRol();
+
+
+    echo '
     </ul>
     <form class="d-flex">
     <button class="btn btn-outline-dark" type="submit">
@@ -58,11 +108,13 @@ function mostrarMenu(){
     echo'
     </button>
     </a>
-    </div>
+    </div>';
+
+    MostrarLogout();
+    
+    echo'
     </div>
     </nav>
-    
-    
     ';
     
 }
