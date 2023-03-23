@@ -13,6 +13,7 @@ include ('../controllers/loginController.php');
     <title>StyleShop-Login</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/correctivos.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="css/login.css" rel="stylesheet" />
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
@@ -81,10 +82,12 @@ include ('../controllers/loginController.php');
 
 
 
-
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="js/funcionesRegistro.js"></script>
 <script src="vendor/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 20-03-2023 a las 06:40:15
+-- Tiempo de generación: 23-03-2023 a las 06:58:52
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -25,6 +25,24 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarUsuario` (IN `pIdUsuario` INT, IN `pRol` INT(2), IN `pCedula` INT(15), IN `pTelefono` INT(10), IN `pNombre` VARCHAR(80), IN `pContrasenna` VARCHAR(50))   BEGIN
+
+IF pContrasenna = '' THEN    
+		SELECT 	Contrasenna INTO pContrasenna 
+		FROM 	usuario 
+		WHERE 	idUsuario = pIdUsuario;
+    END IF;
+
+	UPDATE  usuario
+    SET     idRol = pRol,
+			cedula = pCedula,
+            Nombre = pNombre,
+            Contrasenna = pContrasenna,
+            Telefono = pTelefono
+    WHERE   idUsuario = pIdUsuario;
+    
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ProcedimientoInsertar` (IN `pemail` VARCHAR(50), IN `pContrasenna` VARCHAR(50))   BEGIN
 insert into usuario(email,Contrasenna,idRol) values(pemail,pContrasenna,1);
 END$$
@@ -38,6 +56,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidarInicio` (IN `pEmail` VARCHAR
   	FROM 	usuario
     WHERE 	email = pEmail
     	AND Contrasenna       = pContrasenna;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `VerDatosUsuario` (IN `pIdUsuario` INT)   BEGIN
+ 
+       SELECT	idUsuario,
+                cedula,
+                email, 
+                nombre, 
+                telefono,
+                U.idRol,
+                R.nombreRol
+FROM 	usuario U
+        INNER JOIN roles R ON U.idRol = R.idRol
+        WHERE idUsuario = pIdUsuario;
 
 END$$
 
@@ -55,6 +88,13 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `VerificarExisteCorreo` (IN `p_email` VARCHAR(100))   BEGIN
 
 SELECT email,Contrasenna FROM usuario WHERE email = p_email;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `VerPerfiles` ()   BEGIN
+
+SELECT idRol, nombreRol
+FROM roles;
 
 END$$
 
@@ -146,7 +186,6 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`idRol`, `nombreRol`) VALUES
-(0, 'administrador'),
 (1, 'cliente'),
 (2, 'administrador');
 
@@ -161,9 +200,9 @@ CREATE TABLE `usuario` (
   `email` varchar(50) NOT NULL,
   `Contrasenna` varchar(20) NOT NULL,
   `idRol` int(2) NOT NULL,
-  `nombre` varchar(80) NOT NULL,
-  `cedula` int(15) NOT NULL,
-  `telefono` int(10) NOT NULL
+  `nombre` varchar(80) DEFAULT NULL,
+  `cedula` int(11) DEFAULT NULL,
+  `telefono` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -171,9 +210,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `email`, `Contrasenna`, `idRol`, `nombre`, `cedula`, `telefono`) VALUES
-(1, 'cliente@example.com', 'pwdprueba', 1, '', 0, 0),
+(1, 'cliente@example.com', '123', 2, 'FRANCISCO SEBASTIAN LEON CASCANTE', 118560852, 8888888),
 (3, 'sebas01@gmail.com', '01', 1, '', 0, 0),
-(4, 'sleonc02@gmail.com', '12', 1, '', 0, 0),
+(4, 'sleonc02@gmail.com', '123', 1, '', 0, 0),
 (5, 'juan@gmail.com', '123', 1, '', 0, 0),
 (6, 'carlos@gmail.com', '123', 1, '', 0, 0),
 (7, 'pedro@gmail.com', '123', 1, '', 0, 0),
@@ -184,7 +223,7 @@ INSERT INTO `usuario` (`idUsuario`, `email`, `Contrasenna`, `idRol`, `nombre`, `
 (12, 'bernal@gmail.com', '123', 1, '', 0, 0),
 (13, 'fabian@gmail.com', '123', 1, '', 0, 0),
 (14, 'carlos123@gmail.com', '123', 1, '', 0, 0),
-(15, 'Krista@gmail.com', '123', 1, '', 0, 0),
+(15, 'Krista@gmail.com', '123', 2, 'KRISTA ISABEL LEON CASCANTE', 117540010, 0),
 (16, 'fer@gmail.com', '123', 1, '', 0, 0),
 (17, 'prueba123@gmail.com', '123', 1, '', 0, 0),
 (18, 'leon@gmail.com', '123', 1, '', 0, 0),

@@ -1,5 +1,7 @@
 <?php
 include ('views/recortes.php');
+include ('controllers/loginController.php');
+
 ?>
 
 

@@ -157,3 +157,8 @@ a{color:inherit;text-decoration:none}
 .foot-lnk{
 	text-align:center;
 }
+
+.btn-salir{
+	margin-left: 10px;
+	padding-right: 20px;
+}
