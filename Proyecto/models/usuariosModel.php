@@ -68,4 +68,20 @@ function ActualizarUsuarioModel($idUsuario, $rol, $cedula, $telefono, $nombre, $
 }
 
 
+function VerificarExisteCuentaModel($email)
+{
+    $instancia = OpenDataBase();
+
+    $sentencia = "CALL VerificarExisteCorreo('$email');";
+    $resultado = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $resultado;        
+}
+
+
+
+
+
+
 ?>

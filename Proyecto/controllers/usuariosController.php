@@ -163,7 +163,47 @@ if(isset($_POST["btnActualizarUsuario"]))
 
 
 
+if(isset($_POST["btnRecuperar"]))
+{
+    $email = $_POST["email"];
+    $resultado = VerificarExisteCuentaModel($email);
 
+    if($resultado -> num_rows > 0)
+    {
+        $datosResultado = mysqli_fetch_array($resultado);
+
+        $mensaje = "¡Saludos desde StyleShop! La contraseña de su cuenta es: " . $datosResultado["Contrasenna"];
+        EnviarCorreo($datosResultado["email"], 'Recuperación de contraseña', $mensaje, null);
+    }
+}
+
+
+function EnviarCorreo($destinatario, $asunto, $cuerpo)
+{
+    require '../PHPMailer/src/PHPMailer.php';
+    require '../PHPMailer/src/SMTP.php';
+
+    $correoSalida = "styleshop.cr@outlook.com";
+    $contrasennaSalida = "Camello123!";
+
+    $mail = new PHPMailer();
+    $mail -> CharSet = 'UTF-8';
+
+    $mail -> IsSMTP();
+    $mail -> Host = 'smtp.office365.com';     
+    $mail -> SMTPSecure = 'tls';
+    $mail -> Port = 587; // 465 // 25                               
+    $mail -> SMTPAuth = true;
+    $mail -> Username = $correoSalida;               
+    $mail -> Password = $contrasennaSalida;                                
+    
+    $mail -> SetFrom($correoSalida, "Sistema StyleShop");
+    $mail -> Subject = $asunto;
+    $mail -> MsgHTML($cuerpo);   
+    $mail -> AddAddress($destinatario, 'Usuario Sistema');
+
+    $mail -> send();
+}
 
 
 ?>

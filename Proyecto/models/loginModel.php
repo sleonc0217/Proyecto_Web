@@ -31,6 +31,11 @@ function ValidacionRegistro($emailRegistrar,$contrasennaRegistrar){
 
 
 
+
+
+
+
+
 function VerificarExisteCorreoModel($emailRegistrar)
 {
     $instancia = OpenDataBase();
@@ -41,6 +46,5 @@ function VerificarExisteCorreoModel($emailRegistrar)
     Close($instancia);
     return $resultado;        
 }
-
 
 ?>
