@@ -1,6 +1,5 @@
 <?php
-include('C:/xampp/htdocs/Proyecto/models/usuariosModel.php');
-
+require_once('../models/usuariosModel.php');
 
 function VerDatosUsuarios()
 {

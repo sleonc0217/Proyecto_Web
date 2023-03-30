@@ -1,10 +1,7 @@
 <?php
-include ('views/recortes.php');
-include ('controllers/loginController.php');
-
+require_once(__DIR__ . '../views/recortes.php');
+//require_once('controllers/loginController.php');
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">

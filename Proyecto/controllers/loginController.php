@@ -1,5 +1,5 @@
 <?php
-include('C:/xampp/htdocs/Proyecto/models/loginModel.php');
+require_once('../models/loginModel.php');
 
 
 
